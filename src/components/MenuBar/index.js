@@ -9,6 +9,8 @@ import {
 import { Home, Grid } from 'styled-icons/boxicons-solid/';
 import { ThList as List } from 'styled-icons/typicons';
 
+import getThemeColor from '../../utils/getThemeColor';
+
 import * as S from './styled';
 
 const MenuBar = () => {
@@ -29,12 +31,26 @@ const MenuBar = () => {
   return (
     <S.MenuBarWrapper>
       <S.MenuBarGroup>
-        <S.MenuBarLink to="/" title="Voltar para Home">
+        <S.MenuBarLink
+          to="/"
+          cover
+          direction="right"
+          bg={getThemeColor()}
+          duration={0.6}
+          title="Voltar para Home"
+        >
           <S.MenuBarItem>
             <Home />
           </S.MenuBarItem>
         </S.MenuBarLink>
-        <S.MenuBarLink to="/search/" title="Pesquisar">
+        <S.MenuBarLink
+          to="/search/"
+          cover
+          direction="right"
+          bg={getThemeColor()}
+          duration={0.6}
+          title="Pesquisar"
+        >
           <S.MenuBarItem>
             <Search />
           </S.MenuBarItem>
