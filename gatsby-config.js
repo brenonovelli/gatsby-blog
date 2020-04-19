@@ -1,3 +1,7 @@
+require('dotenv').config();
+
+const queries = require('./src/utils/algolia_queries');
+
 module.exports = {
   siteMetadata: {
     title: `My Blog`,
@@ -5,18 +9,20 @@ module.exports = {
     description: `Pai na B&G MN. Em 2007 eu era web designer. Hoje não sei. Desenvolvedor frontend? Fullstack? UI? UX? Designer? Diretor de arte?`,
     author: `@gatsbyjs`,
   },
+
   plugins: [
     `gatsby-plugin-styled-components`,
+
     `gatsby-plugin-react-helmet`,
     // needs to be the first to work with gatsby-remark-images
     {
-      // keep as first gatsby-source-filesystem plugin for gatsby image support
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-source-filesystem`,
       options: {
+        name: `uploads`,
         path: `${__dirname}/static/assets/img`,
-        name: 'uploads',
       },
     },
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -24,6 +30,7 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -31,14 +38,13 @@ module.exports = {
         path: `${__dirname}/posts`,
       },
     },
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
+
     {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
           {
-            resolve: 'gatsby-remark-relative-images',
+            resolve: 'gatsby-remark-relative-images-v2',
             options: {
               name: 'uploads',
             },
@@ -46,9 +52,6 @@ module.exports = {
           {
             resolve: 'gatsby-remark-images',
             options: {
-              // It's important to specify the maxWidth (in pixels) of
-              // the content container as this plugin uses this as the
-              // base for generating different widths of each image.
               maxWidth: 960,
               linkImagesToOriginal: false,
             },
@@ -56,6 +59,20 @@ module.exports = {
           `gatsby-remark-lazy-load`,
           `gatsby-remark-prismjs`,
         ],
+      },
+    },
+
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-algolia-search`,
+      options: {
+        appId: process.env.GATSBY_ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_ADMIN_KEY,
+        indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
+        queries,
+        chunkSize: 10000, // default: 1000
+        enablePartialUpdates: true,
       },
     },
     {
