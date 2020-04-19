@@ -8,7 +8,7 @@ module.exports = {
     position: `Creative Fullstack`,
     description: `Pai na B&G MN. Em 2007 eu era web designer. Hoje não sei. Desenvolvedor frontend? Fullstack? UI? UX? Designer? Diretor de arte?`,
     author: `@gatsbyjs`,
-    siteUrl: `https://www.breno.com.br`,
+    siteUrl: `https://gatsby-blog-breno.netlify.app`,
   },
 
   plugins: [
@@ -93,5 +93,6 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
+    `gatsby-plugin-netlify-cms`,
   ],
 };

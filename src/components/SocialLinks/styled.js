@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import media from 'styled-media-query';
 
 export const SocialLinksWrapper = styled.nav`
-  margin: 2rem auto;
+  margin-top: auto;
   width: 100%;
 
   ${media.lessThan('large')`
@@ -13,7 +13,7 @@ export const SocialLinksWrapper = styled.nav`
 export const SocialLinksList = styled.ul`
   align-items: center;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   list-style: none;
 `;
 
